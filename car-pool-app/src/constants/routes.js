@@ -5,3 +5,4 @@ export const SIGN_OUT = '/signout';
 export const HOME = '/home';
 export const ADMIN = '/admin';
 export const ACCOUNT = '/account';
+export const ADMIN_DETAILS = '/admin/:id';
