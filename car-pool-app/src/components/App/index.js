@@ -8,6 +8,9 @@ import SignInPage from '../SignIn';
 import HomePage from '../Home';
 import AdminPage from '../Admin';
 import AccountPage from '../Account';
+import SearchResults from '../SearchResults';
+
+
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -22,10 +25,11 @@ const App = () => (
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.REGISTER} component={RegisterPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      
+
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.SEARCH_RESULTS} component={SearchResults} />
     </div>
   </Router>
 );
