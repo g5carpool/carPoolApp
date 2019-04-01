@@ -6,3 +6,4 @@ export const HOME = '/home';
 export const ADMIN = '/admin';
 export const ACCOUNT = '/account';
 export const ADMIN_DETAILS = '/admin/:id';
+export const SEARCH_RESULTS = '/searchresults';
