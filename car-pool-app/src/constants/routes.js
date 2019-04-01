@@ -5,5 +5,9 @@ export const SIGN_OUT = '/signout';
 export const HOME = '/home';
 export const ADMIN = '/admin';
 export const ACCOUNT = '/account';
+// <<<<<<< homePageDev
+export const DRIVER = '/driver';
+// =======
 export const ADMIN_DETAILS = '/admin/:id';
 export const SEARCH_RESULTS = '/searchresults';
+// >>>>>>> master
