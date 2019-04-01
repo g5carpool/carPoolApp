@@ -40,6 +40,15 @@ const config = {
   user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref('users');
+
+  //*** Routes API ***/
+
+  route = rid => this.db.ref(`routes/${rid}`);
+
+  routes = () => this.db.ref('routes');
   }
+
+  
+  
   
   export default Firebase;

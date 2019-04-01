@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  usertype: '',
   error: null,
 };
 
@@ -27,7 +28,7 @@ class RegisterFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne, usertype } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -38,6 +39,7 @@ class RegisterFormBase extends Component {
           .set({
             username,
             email,
+          usertype,
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
@@ -64,6 +66,7 @@ event.preventDefault();
       email,
       passwordOne,
       passwordTwo,
+      usertype,
       error,
     } = this.state;
 
@@ -103,6 +106,16 @@ event.preventDefault();
           type="password"
           placeholder="Confirm Password"
         />
+      <p>Add Profile details</p>
+        <div>
+        <input
+          name="usertype"
+          value={usertype}
+          onChange={this.onChange}
+          type="text"
+          placeholder="usertype"
+        />
+        </div>
         <button disabled={isInvalid} type="submit">
           Register
         </button>
