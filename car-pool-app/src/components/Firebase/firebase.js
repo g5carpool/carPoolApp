@@ -46,6 +46,12 @@ const config = {
   route = rid => this.db.ref(`routes/${rid}`);
 
   routes = () => this.db.ref('routes');
+
+    //*** Journey API ***/
+
+    jouney = jid => this.db.ref(`journeys/${jid}`);
+
+    journeys = () => this.db.ref('journeys');
   }
 
   

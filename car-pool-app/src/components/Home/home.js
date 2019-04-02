@@ -1,5 +1,9 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 import DateTimePicker from 'react-datetime-picker';
+import * as ROUTES from '../../constants/routes';
+
     export default
         class HomePage extends React.Component {
         state = {
@@ -19,7 +23,7 @@ import DateTimePicker from 'react-datetime-picker';
     return (
         
     <form>
-        <button onClick={() => this.onSubmit()}>Create a Trip</button>
+        <Link to={ROUTES.DRIVER}>Create a trip</Link>
         <button onClick={() => this.onSubmit()}>Log In</button>
         <button onClick={() => this.onSubmit()}>Sign Up</button>
         <br/>
