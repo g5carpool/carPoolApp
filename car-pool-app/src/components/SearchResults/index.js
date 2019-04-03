@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { format } from 'url';
 import { withFirebase } from '../Firebase';
 class SearchResults extends Component {
   state = {
