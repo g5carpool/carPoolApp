@@ -9,6 +9,8 @@ import HomePage from '../Home';
 import AdminPage from '../Admin';
 import AccountPage from '../Account';
 import Driver from '../Driver';
+import Profile from '../profile';
+
 import SearchResults from '../SearchResults';
 
 import * as ROUTES from '../../constants/routes';
@@ -28,6 +30,8 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
+       <Route path={ROUTES.PROFILE} component={Profile} />
+
       <Route path={ROUTES.SEARCH_RESULTS} component={SearchResults} />
     </div>
   </Router>

@@ -30,6 +30,10 @@ const NavigationAuth = () => (
     <li>
       <Link to={ROUTES.ADMIN}>Admin</Link>
     </li>
+     <li>
+      <Link to={ROUTES.PROFILE}>Profile</Link>
+    </li>
+
     <li>
       <SignOutButton />
     </li>

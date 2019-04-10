@@ -4,6 +4,8 @@ export const SIGN_IN = '/signin';
 export const SIGN_OUT = '/signout';
 export const HOME = '/home';
 export const ADMIN = '/admin';
+export const PROFILE = '/profile';
+
 export const ACCOUNT = '/account';
 // <<<<<<< homePageDev
 export const DRIVER = '/driver';

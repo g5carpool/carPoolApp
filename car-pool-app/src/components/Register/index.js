@@ -27,6 +27,7 @@ class RegisterFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
+  
   onSubmit = event => {
     const { username, email, passwordOne, usertype } = this.state;
 
