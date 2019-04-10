@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { withFirebase } from '../Firebase';
-import { withRouter } from 'react-router-dom';
-import DateTimePicker from 'react-datetime-picker';
+import React, { Component } from "react";
+import { withFirebase } from "../Firebase";
+import { withRouter } from "react-router-dom";
+import DateTimePicker from "react-datetime-picker";
 
 class SearchResults extends Component {
   constructor(props) {
@@ -10,50 +10,56 @@ class SearchResults extends Component {
     this.state = {
       loading: false,
       journeys: [],
-      routes: [],
+      routes: []
     };
   }
 
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.users().on('value', snapshot => {
+    this.props.firebase.users().on("value", snapshot => {
       const usersObject = snapshot.val();
 
       const usersList = Object.keys(usersObject).map(key => ({
         ...usersObject[key],
-        uid: key,
+        uid: key
       }));
 
       this.setState({
         users: usersList,
-        loading: false,
+        loading: false
       });
     });
-    this.props.firebase.journeys().on('value', snapshot => {
+    this.props.firebase.journeys().on("value", snapshot => {
       const journeysObject = snapshot.val();
-
       const journeysList = Object.keys(journeysObject).map(key => ({
         ...journeysObject[key],
-        jid: key,
+        jid: key
       }));
 
       this.setState({
         journeys: journeysList,
-        loading: false,
+        loading: false
       });
     });
-    this.props.firebase.routes().on('value', snapshot => {
+    this.props.firebase.routes().on("value", snapshot => {
       const routesObject = snapshot.val();
 
       const routesList = Object.keys(routesObject).map(key => ({
         ...routesObject[key],
-        rid: key,
+        rid: key
       }));
 
       this.setState({
         routes: routesList,
-        loading: false,
+        loading: false
+      });
+      console.log(routesObject);
+      snapshot.forEach(function(childNodes) {
+        //key of each destination
+        console.log(childNodes.key);
+        //destination of the route
+        console.log(childNodes.val().destination);
       });
     });
   }
@@ -68,7 +74,7 @@ class SearchResults extends Component {
   };
 
   render() {
-    const { journeys,routes, loading } = this.state;
+    const { journeys, routes, loading } = this.state;
     return (
       <div>
         <div>
@@ -81,8 +87,8 @@ class SearchResults extends Component {
           <button className={this.changeButtonColour()}>go back</button>
         </div>
         <div className="Journeys">
-        {loading && <div>Loading ...</div>}
-        <JourneysList journeys={journeys} routes={routes} />
+          {loading && <div>Loading ...</div>}
+          <JourneysList journeys={journeys} routes={routes} />
         </div>
       </div>
     );
@@ -107,28 +113,30 @@ class SearchResults extends Component {
       : mySearch + " journey(s) available";
   }
 }
-const JourneysList = ({ journeys,routes }) => (
- 
-
-
-  <div> <table>
+const JourneysList = ({ journeys, routes }) => (
+  <div>
+    {" "}
+    <table>
       <tr>
-          <th>User</th>
-          <th>Date</th>
-          <th>Destination</th>          
-          <th></th>
+        <th>User</th>
+        <th>Date</th>
+        <th>Destination</th>
+        <th />
       </tr>
       {journeys.map(journey => (
-      <tr>
-          <td><input type="radio" name="select" value={journey.user}></input>{journey.user}</td>
+        <tr>
+          <td>
+            <input type="radio" name="select" value={journey.user} />
+            {journey.user}
+          </td>
           <td>{journey.date} </td>
-          {routes.map(route=> (<td>{route.destination} </td>))}
-          <td></td>
-      </tr>
+          {routes.map(route => (
+            <td>{route.destination} </td>
+          ))}
+          <td />
+        </tr>
       ))}
-  </table>
-  
+    </table>
   </div>
-
 );
 export default withFirebase(SearchResults);
