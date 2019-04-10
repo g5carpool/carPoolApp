@@ -63,7 +63,7 @@ import { withFirebase } from '../Firebase';
         }
     }
     const INITIAL_STATE = {
-        user: 'Test',
+        user: 'Test Pilot',
         destination : '',
         arrivalTime : new Date(),
         date : new Date().valueOf(),

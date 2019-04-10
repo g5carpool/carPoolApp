@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import DateTimePicker from 'react-datetime-picker';
 import * as ROUTES from '../../constants/routes';
 
-    export default
+
         class HomePage extends React.Component {
         state = {
             To: "",
@@ -15,6 +15,8 @@ import * as ROUTES from '../../constants/routes';
         };
 
         onSubmit = () =>{
+            this.props.history.push(ROUTES.SEARCH_RESULTS);
+
         }
 
         onChange = date => this.setState({ date })
@@ -46,8 +48,11 @@ import * as ROUTES from '../../constants/routes';
           value={this.state.date}
         />
       </div>
-        <button onClick={() => this.onSubmit()}>Search</button>
+      <Link to={ROUTES.SEARCH_RESULTS}>Search Results</Link>
+        
     </form>
     ); 
     }
 }
+
+export default HomePage;

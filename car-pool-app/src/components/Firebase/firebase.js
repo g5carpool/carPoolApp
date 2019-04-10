@@ -49,7 +49,7 @@ const config = {
 
     //*** Journey API ***/
 
-    jouney = jid => this.db.ref(`journeys/${jid}`);
+    journey = jid => this.db.ref(`journeys/${jid}`);
 
     journeys = () => this.db.ref('journeys');
   }
