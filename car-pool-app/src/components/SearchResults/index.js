@@ -83,10 +83,11 @@ class SearchResults extends Component {
     //console.log("render");
     try{
     console.log(routeOb['-LbEMlLMaeI1F5b4a941'].destination);
+    console.log(userOb[firebase.auth().currentUser.uid].username);
     return (
       <div>
         <div>
-          <h1>Account: {firebase.auth().currentUser.email}</h1>
+          <h1>Account: {userOb[firebase.auth().currentUser.uid].username}</h1>
         </div>
         <div>
           <h1>Search Results </h1>;
