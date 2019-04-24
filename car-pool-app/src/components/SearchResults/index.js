@@ -14,6 +14,8 @@ class SearchResults extends Component {
       loading: false,
       journeys: [],
       routes: [],
+
+      // primary keys have to be hard coded MUST BE FIXED
       routeOb:{
         "-LbEMlLMaeI1F5b4a941":{
           destination:"ww"
@@ -23,9 +25,14 @@ class SearchResults extends Component {
         },
         "-Ld5I7WtxkO0ZeOEMwaU":{
           destination:"ww"
+        },
+        "-LbELHrezARfnSFK4sw3":{
+          destination:"ww"
         }
       },
-      // routeOb:[],
+      //routeOb:[],
+
+      // does not need to be hard coded. WHY?
       userOb:[],
       users:[]
     };
