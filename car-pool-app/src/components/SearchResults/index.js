@@ -14,25 +14,7 @@ class SearchResults extends Component {
       loading: false,
       journeys: [],
       routes: [],
-
-      // primary keys have to be hard coded MUST BE FIXED
-      routeOb:{
-        "-LbEMlLMaeI1F5b4a941":{
-          destination:"ww"
-        },
-        "-LbNOS8JfVRVGiQPnNfo":{
-          destination:"ww"
-        },
-        "-Ld5I7WtxkO0ZeOEMwaU":{
-          destination:"ww"
-        },
-        "-LbELHrezARfnSFK4sw3":{
-          destination:"ww"
-        }
-      },
-      //routeOb:[],
-
-      // does not need to be hard coded. WHY?
+      routeOb:[],
       userOb:[],
       users:[]
     };
@@ -99,7 +81,8 @@ class SearchResults extends Component {
     
     const { journeys,userOb, routeOb}  = this.state;
     //console.log("render");
-    //console.log(routeOb['-LbEMlLMaeI1F5b4a941'].destination);
+    try{
+    console.log(routeOb['-LbEMlLMaeI1F5b4a941'].destination);
     return (
       <div>
         <div>
@@ -145,6 +128,13 @@ class SearchResults extends Component {
         </div>
       </div>
     );
+    }
+    catch(err){
+      console.log("routeOb not found");
+      return (
+        <div></div>
+      );
+    }
     
     
   }
