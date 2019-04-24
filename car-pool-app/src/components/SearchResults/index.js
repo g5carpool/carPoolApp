@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { withFirebase } from "../Firebase";
+import { withAuthorization } from '../Session';
 import { withRouter } from "react-router-dom";
 import DateTimePicker from "react-datetime-picker";
+import firebase from "firebase";
+
 
 class SearchResults extends Component {
   constructor(props) {
@@ -10,16 +13,20 @@ class SearchResults extends Component {
     this.state = {
       loading: false,
       journeys: [],
-      routes: []
+      routes: [],
+      routeOb:[],
+      userOb:[],
+      users:[]
     };
   }
 
   componentDidMount() {
+    //console.log("mount");
     this.setState({ loading: true });
 
     this.props.firebase.users().on("value", snapshot => {
       const usersObject = snapshot.val();
-
+      //console.log(usersObject);
       const usersList = Object.keys(usersObject).map(key => ({
         ...usersObject[key],
         uid: key
@@ -27,7 +34,8 @@ class SearchResults extends Component {
 
       this.setState({
         users: usersList,
-        loading: false
+        loading: false,
+        userOb :usersObject
       });
     });
     this.props.firebase.journeys().on("value", snapshot => {
@@ -44,7 +52,7 @@ class SearchResults extends Component {
     });
     this.props.firebase.routes().on("value", snapshot => {
       const routesObject = snapshot.val();
-
+      //console.log(routesObject);
       const routesList = Object.keys(routesObject).map(key => ({
         ...routesObject[key],
         rid: key
@@ -52,20 +60,16 @@ class SearchResults extends Component {
 
       this.setState({
         routes: routesList,
-        loading: false
+        loading: false,
+        routeOb :routesObject
       });
-      console.log(routesObject);
-      snapshot.forEach(function(childNodes) {
-        //key of each destination
-        console.log(childNodes.key);
-        //destination of the route
-        console.log(childNodes.val().destination);
-      });
+      //console.log(this.state.routeOb['-LbEMlLMaeI1F5b4a941']);
+      
     });
+    
   }
   componentWillUnmount() {
     this.props.firebase.journeys().off();
-    this.props.firebase.routes().off();
   }
 
   styles = {
@@ -74,9 +78,16 @@ class SearchResults extends Component {
   };
 
   render() {
-    const { journeys, routes, loading } = this.state;
+    
+    const { journeys,userOb, routeOb}  = this.state;
+    //console.log("render");
+    try{
+    console.log(routeOb['-LbEMlLMaeI1F5b4a941'].destination);
     return (
       <div>
+        <div>
+          <h1>Account: {firebase.auth().currentUser.email}</h1>
+        </div>
         <div>
           <h1>Search Results </h1>;
           <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
@@ -87,12 +98,47 @@ class SearchResults extends Component {
           <button className={this.changeButtonColour()}>go back</button>
         </div>
         <div className="Journeys">
-          {loading && <div>Loading ...</div>}
-          <JourneysList journeys={journeys} routes={routes} />
+          <form onSubmit={this.onSubmit}>
+            <div>
+              <table>
+                <tr>
+                  <th>User</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Destination</th>
+                  <th />
+                </tr>
+                {journeys.map(journey => (
+                  <tr>
+                    <td>
+                      <input type="radio" name="select" value={journey.user} />
+                      {userOb[journey.user].username}
+                    </td>
+                    <td>{new Date(journey.date).toLocaleDateString("en-IE")} </td>
+                    <td>{new Date(journey.date).toLocaleTimeString("en-IE")} </td>
+                    <td>{routeOb[journey.destination].destination} </td>
+                    <td />
+                  </tr>
+                ))}
+              </table>
+            </div>
+            <br />
+           <button type="submit">Submit</button>
+          </form>
         </div>
       </div>
     );
+    }
+    catch(err){
+      console.log("routeOb not found");
+      return (
+        <div></div>
+      );
+    }
+    
+    
   }
+  
 
   changeButtonColour() {
     let classes = "badge m-2 badge-";
@@ -112,31 +158,9 @@ class SearchResults extends Component {
       ? "Zero searchs available"
       : mySearch + " journey(s) available";
   }
+  
 }
-const JourneysList = ({ journeys, routes }) => (
-  <div>
-    {" "}
-    <table>
-      <tr>
-        <th>User</th>
-        <th>Date</th>
-        <th>Destination</th>
-        <th />
-      </tr>
-      {journeys.map(journey => (
-        <tr>
-          <td>
-            <input type="radio" name="select" value={journey.user} />
-            {journey.user}
-          </td>
-          <td>{journey.date} </td>
-          {routes.map(route => (
-            <td>{route.destination} </td>
-          ))}
-          <td />
-        </tr>
-      ))}
-    </table>
-  </div>
-);
-export default withFirebase(SearchResults);
+
+
+const condition = authUser => !!authUser;
+export default withFirebase(withAuthorization(condition)(SearchResults));
