@@ -16,7 +16,15 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
-  usertype: '',
+  DoB: '',
+  gender: '',
+  carModel: '',
+  maxSeats: '1',
+  smoking: false,
+  allowPets: false,
+  hasChildSeat: false,
+  personality: '',
+  rating: 0,
   error: null,
 };
 
@@ -29,7 +37,19 @@ class RegisterFormBase extends Component {
 
   
   onSubmit = event => {
-    const { username, email, passwordOne, usertype } = this.state;
+    const {   username, 
+              email, 
+              passwordOne, 
+              DoB, 
+              gender, 
+              carModel,
+              maxSeats,
+              smoking,
+              allowPets,
+              hasChildSeat,
+              personality,
+              rating
+            } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -40,11 +60,19 @@ class RegisterFormBase extends Component {
           .set({
             username,
             email,
-          usertype,
+            DoB,
+            gender,
+            carModel,
+            maxSeats,
+            smoking,
+            allowPets,
+            hasChildSeat,
+            personality,
+            rating
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.HOME);
+            this.props.history.push(ROUTES.PROFILE);
           })
           .catch(error => {
             this.setState({ error });
@@ -67,7 +95,6 @@ event.preventDefault();
       email,
       passwordOne,
       passwordTwo,
-      usertype,
       error,
     } = this.state;
 
@@ -109,13 +136,7 @@ event.preventDefault();
         />
       <p>Add Profile details</p>
         <div>
-        <input
-          name="usertype"
-          value={usertype}
-          onChange={this.onChange}
-          type="text"
-          placeholder="usertype"
-        />
+        
         </div>
         <button disabled={isInvalid} type="submit">
           Register

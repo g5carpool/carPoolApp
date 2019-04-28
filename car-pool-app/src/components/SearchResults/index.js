@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { withFirebase } from "../Firebase";
 import { withAuthorization } from '../Session';
-import { withRouter } from "react-router-dom";
-import DateTimePicker from "react-datetime-picker";
 import firebase from "firebase";
 
 
