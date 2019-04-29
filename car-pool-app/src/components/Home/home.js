@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import DateTimePicker from 'react-datetime-picker';
 import * as ROUTES from '../../constants/routes';
