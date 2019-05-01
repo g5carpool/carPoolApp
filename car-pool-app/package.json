@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "firebase": "^5.8.5",
+    "jquery": "^3.4.0",
+    "popper.js": "^1.15.0",
     "react": "^16.8.3",
     "react-date-picker": "^7.5.0",
     "react-datepicker": "^2.5.0",

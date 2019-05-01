@@ -85,21 +85,12 @@ class SearchResults extends Component {
     return (
       <div>
         <div>
-          <h1>Account: {userOb[firebase.auth().currentUser.uid].username}</h1>
-        </div>
-        <div>
-          <h1>Search Results </h1>;
-          <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-          <button className="btn btn-secondary btn-sm">
-            View Driver Profile
-          </button>
-          <br />
-          <button className={this.changeButtonColour()}>go back</button>
+          <h1>Search Results </h1>
         </div>
         <div className="Journeys">
           <form onSubmit={this.onSubmit}>
             <div>
-              <table>
+              <table id="tables">
                 <tr>
                   <th>User</th>
                   <th>Date</th>
@@ -122,7 +113,7 @@ class SearchResults extends Component {
               </table>
             </div>
             <br />
-           <button type="submit">Submit</button>
+           <button className="btn-xl" type="submit">Submit</button>
           </form>
         </div>
       </div>
