@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import SignOutButton from '../SignOut';
-
 import { AuthUserContext } from '../Session';
 
 const Navigation = () => (
@@ -17,41 +15,50 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ADMIN}>Admin</Link>
-    </li>
-     <li>
-      <Link to={ROUTES.PROFILE}>Profile</Link>
-    </li>
+  
+  <div>
+    
+     
+    <nav className="navbar navbar-expand-lg  fixed-top text-uppercase" id="mainNav">
 
-    <li>
+  <ul className="navbar-nav ml-auto">
+    <li className="nav-item mx-0 mx-lg-1">
+      <NavLink to={ROUTES.HOME} className="inactive" active className="active">Home</NavLink>
+    </li>
+    <li className="nav-item mx-0 mx-lg-1">
+      <NavLink to={ROUTES.ADMIN} className="inactive" active className="active">Admin</NavLink>
+    </li>
+     <li className="nav-item mx-0 mx-lg-1">
+      <NavLink to={ROUTES.PROFILE} className="inactive" active className="active">Profile</NavLink>
+    </li>
+    <li className="nav-item mx-0 mx-lg-1 ">
       <SignOutButton />
     </li>
   </ul>
+  </nav>
+  <br></br>
+  </div>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+  <div>
+  <nav className="navbar navbar-expand-lg  fixed-top text-uppercase" id="mainNav">
+
+  <ul className="navbar-nav ml-auto">
+    <li className="nav-item mx-0 mx-lg-1">
+      <NavLink to={ROUTES.HOME} className="inactive" active className="active">Home</NavLink>
     </li>
-    <li>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    <li className="nav-item mx-0 mx-lg-1">
+      <NavLink to={ROUTES.SIGN_IN} className="inactive" active className="active">Sign In</NavLink>
     </li>
-    <li>
-      <Link to={ROUTES.REGISTER}>Register</Link>
+    <li className="nav-item mx-0 mx-lg-1">
+      <NavLink to={ROUTES.REGISTER} className="inactive" active className="active">Register</NavLink>
     </li>
   </ul>
+  <br></br>
+  </nav>
+  </div>
+
 );
 
 export default Navigation;

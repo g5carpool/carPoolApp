@@ -5,8 +5,8 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 const RegisterPage = () => (
-  <div>
-    <h1>Register</h1>
+  <div className="center">
+    
     <RegisterForm />
   </div>
 );
@@ -105,6 +105,8 @@ event.preventDefault();
       username === '';
 
     return (
+      <div className="register">
+      <h1>Register</h1>
       <form onSubmit={this.onSubmit}>
         <input
           name="username"
@@ -134,16 +136,16 @@ event.preventDefault();
           type="password"
           placeholder="Confirm Password"
         />
-      <p>Add Profile details</p>
         <div>
         
         </div>
-        <button disabled={isInvalid} type="submit">
+        <button className="btn-xl" disabled={isInvalid} type="submit">
           Register
         </button>
 
         {error && <p>{error.message}</p>}
       </form>
+      </div>
     );
   }
 }

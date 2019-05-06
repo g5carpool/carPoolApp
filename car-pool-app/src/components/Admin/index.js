@@ -191,7 +191,7 @@ class AddRouteFormBase extends Component {
           type="text"
           placeholder="node3"
         />
-        <button disabled={isInvalid} type="submit">
+        <button className="btn-xl" disabled={isInvalid} type="submit">
           Add New Route
         </button>
 

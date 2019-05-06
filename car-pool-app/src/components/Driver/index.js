@@ -20,9 +20,6 @@ class Driver extends Component {
     const {   loading } = this.state;
     return (
       <div className="Driver">
-        <div>
-          <h1>Account: {firebase.auth().currentUser.uid}</h1>
-        </div>
         <AddJourneyForm/>
         {loading && <div>Loading ...</div>}        
       </div>
@@ -124,14 +121,16 @@ class AddJourneyFormBase extends React.Component {
       ))}
     </table>
       </div>
-        <div>
-          <DateTimePicker
+        <div className="center">
+        <div id="driverTime">
+          <DateTimePicker id="driverTime" className="DateTimePicker"
             onChange={this.onChange}
             value={this.state.arrivalTime}
           />
+          </div>
         </div>
         <br />
-        <button type="submit">Submit</button>
+        <div className="center"><button id="driverSubmit" className="btn-xl" type="submit">Submit</button></div>
       </form>
     );
   }
