@@ -14,7 +14,8 @@ class SearchResults extends Component {
       routes: [],
       routeOb:[],
       userOb:[],
-      users:[]
+      users:[],
+      userId: ""
     };
   }
 
@@ -75,6 +76,13 @@ class SearchResults extends Component {
     fontWeight: "bold"
   };
 
+  onSubmit = event => {
+    event.preventDefault();
+    const {  userID } = this.state;    
+    this.props.history.push("userprofile/"+userID);  
+    
+  };
+
   render() {
     
     const { journeys,userOb, routeOb}  = this.state;
@@ -101,7 +109,7 @@ class SearchResults extends Component {
                 {journeys.map(journey => (
                   <tr>
                     <td>
-                      <input type="radio" name="select" value={journey.user} />
+                      <input type="radio" name="select" onChange={e => this.setState({ userID: e.target.value })} value={journey.user} />
                       {userOb[journey.user].username}
                     </td>
                     <td>{new Date(journey.date).toLocaleDateString("en-IE")} </td>
