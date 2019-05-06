@@ -8,6 +8,7 @@ import AdminPage from '../Admin';
 import Driver from '../Driver';
 import Profile from '../profile';
 import SearchResults from '../SearchResults';
+import UserProfile from '../UserProfile';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,6 +29,7 @@ const App = () => (
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.PROFILE} component={Profile} />
       <Route path={ROUTES.SEARCH_RESULTS} component={SearchResults} />
+      <Route path={ROUTES.USERPROFILE} component={UserProfile} />
     </div>
   </Router>
 );
